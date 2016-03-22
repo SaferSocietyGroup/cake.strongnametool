@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Cake.StrongNameTool</id>
+    <version>0.0.1</version>
+    <authors>Safer Society Group.</authors>
+    <owners>Safer Society Group.</owners>
+    <description>Cake addin to help with the resigning and verifying of .NET assemblies using sn.exe</description>
+    <summary></summary>
+    <licenseUrl>https://github.com/SaferSocietyGroup/cake.strongnametool/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SaferSocietyGroup/cake.strongnametool</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) Safer Society Group Sweden AB.</copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="cake.strongnametool.dll" target="lib/net45" />
+  </files>
+</package>

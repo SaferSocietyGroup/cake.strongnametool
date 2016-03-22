@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cake.strongnametool", "src\cake.strongnametool\cake.strongnametool.csproj", "{3631EB18-CB9C-4B69-BF3F-2D1AFF5FFA77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cake.strongnametool.test", "src\cake.strongnametool.test\cake.strongnametool.test.csproj", "{3B788F6A-0F58-4F38-92BF-7B8B4153A3B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3631EB18-CB9C-4B69-BF3F-2D1AFF5FFA77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3631EB18-CB9C-4B69-BF3F-2D1AFF5FFA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3631EB18-CB9C-4B69-BF3F-2D1AFF5FFA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3631EB18-CB9C-4B69-BF3F-2D1AFF5FFA77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B788F6A-0F58-4F38-92BF-7B8B4153A3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B788F6A-0F58-4F38-92BF-7B8B4153A3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B788F6A-0F58-4F38-92BF-7B8B4153A3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B788F6A-0F58-4F38-92BF-7B8B4153A3B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
