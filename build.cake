@@ -168,45 +168,7 @@ Task("Create-NuGet-Packages")
 
 });
 
-Task("Publish-Artifactory")
-    .WithCriteria(() => !local)
-    .Does(() =>
-{
-    // Resolve the API key.
-    var apiKey = EnvironmentVariable("bamboo_ARTIFACTORY_API_KEY");
-    if(string.IsNullOrEmpty(apiKey)) {
-        throw new InvalidOperationException("Could not resolve Artifactory API key.");
-    }
 
-    //Resolve the machine nuget.config
-    var machineNuGetConf = EnvironmentVariable("APPDATA") + Directory("/NuGet") + "/NuGet.config";
-
-    foreach(var package in new[] { "Cake.StrongNameTool" })
-    {
-        // Get the path to the package.
-        var packagePath = nugetRoot + File(string.Concat(package, ".", semVersion, ".nupkg"));
-
-        // Push the package.
-        NuGetPush(packagePath, new NuGetPushSettings {
-            Source = "https://ssg.artifactoryonline.com/ssg/api/nuget/internal-ssg",
-            ApiKey = apiKey,
-            ConfigFile = machineNuGetConf
-        });
-    }
-
-    foreach(var package in new[] { "Cake.StrongNameTool"})
-    {
-        // Get the path to the package.
-        var packagePath = nugetRoot + File(string.Concat(package, ".", semVersion,".symbols", ".nupkg"));
-
-        // Push the package.
-        NuGetPush(packagePath, new NuGetPushSettings {
-            Source = "https://ssg.artifactoryonline.com/ssg/api/nuget/internal-ssg",
-            ApiKey = apiKey,
-            ConfigFile = machineNuGetConf
-        });
-    }
-});
 
 
 //////////////////////////////////////////////////////////////////////
@@ -220,8 +182,7 @@ Task("Package")
 Task("Default")
   .IsDependentOn("Package");
 
-Task("Publish")
-  .IsDependentOn("Publish-Artifactory");
+Task("Publish");
   //.IsDependentOn("Publish-MyGet");
 
 
