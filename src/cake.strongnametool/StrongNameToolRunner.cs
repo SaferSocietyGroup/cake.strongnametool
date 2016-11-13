@@ -20,11 +20,11 @@ namespace Cake.StrongNameTool
         /// <summary>
         /// Initializes a new instance of the <see cref="Cake.StrongNameTool.StrongNameToolRunner"/> class.
         /// </summary>
-        /// <param name="filesystem">Filesystem.</param>
-        /// <param name="enviroment">Enviroment.</param>
-        /// <param name="processrunner">Processrunner.</param>
-        /// <param name="globber">Globber.</param>
-        /// <param name="registry">Registry.</param>
+        /// <param name="filesystem">The filesystem.</param>
+        /// <param name="enviroment">The enviroment.</param>
+        /// <param name="processrunner">The processrunner.</param>
+        /// <param name="globber">The globber.</param>
+        /// <param name="registry">The registry.</param>
         public StrongNameToolRunner(IFileSystem filesystem, ICakeEnvironment enviroment, IProcessRunner processrunner, IGlobber globber, IRegistry registry):this(filesystem, enviroment, processrunner, globber, registry, null)
         {
         }
@@ -38,9 +38,9 @@ namespace Cake.StrongNameTool
         /// <summary>
         /// Run the specified command on files specified by assemblyPath and the settings.
         /// </summary>
-        /// <param name="command">Command.</param>
-        /// <param name="assemblyPath">Assembly path.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="command">The command, verify or resign</param>
+        /// <param name="assemblyPath">The assembly path.</param>
+        /// <param name="settings">The settings.</param>
         public void Run(String command, FilePath assemblyPath, StrongNameToolSettings settings)
         {
             if (assemblyPath == null)
@@ -64,9 +64,9 @@ namespace Cake.StrongNameTool
         /// Gets the arguments based on command and settings.
         /// </summary>
         /// <returns>The arguments.</returns>
-        /// <param name="command">Command.</param>
-        /// <param name="assemblyPath">Assembly path.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="command">The command, verify or resign</param>
+        /// <param name="assemblyPath">The assembly path.</param>
+        /// <param name="settings">The settings.</param>
         private ProcessArgumentBuilder GetArguments(String command, FilePath assemblyPath, StrongNameToolSettings settings)
         {
             if (!_fileSystem.Exist(assemblyPath))
@@ -81,8 +81,14 @@ namespace Cake.StrongNameTool
             if(command.Equals("verify"))
             {
                 // verify
-                builder.Append("-vf");
-                // Target Assembly to resign.
+                if (settings.ForceVerification) {
+                    builder.Append ("-vf");
+                } 
+                else {
+                    builder.Append ("-v");
+                }
+
+                // Target Assembly to verify.
                 builder.AppendQuoted(assemblyPath.MakeAbsolute(_environment).FullPath);
             }
             else if(command.Equals("resign"))

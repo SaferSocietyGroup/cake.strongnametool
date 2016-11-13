@@ -15,5 +15,6 @@
   </metadata>
   <files>
     <file src="cake.strongnametool.dll" target="lib/net45" />
+    <file src="cake.strongnametool.xml" target="lib/net45" />
   </files>
 </package>

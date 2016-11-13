@@ -8,18 +8,34 @@ using Cake.Core.IO;
 namespace Cake.StrongNameTool
 {
     /// <summary>
-    /// Strong name verify tool aliases.
+    /// Strong name verify tool aliases. If one has turned off strong name verification on a machine 
+    /// you can provide the StrongNameToolSettings with ForceVerification set to true.
     /// </summary>
     [CakeAliasCategoryAttribute("Strong Naming")]
     public static class StrongNameVerifyToolAliases
     {
 
         /// <summary>
-        /// Strongs the name verify.
+        /// Verify assembly for strong name signature self consistency. 
         /// </summary>
-        /// <param name="context">Context.</param>
-        /// <param name="assembly">Assembly.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="assembly">The assembly to verify.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
+        /// <example>
+        /// <code>
+        /// Task("Verify")
+        ///     .IsDependentOn("Clean")
+        ///     .IsDependentOn("Restore")
+        ///     .IsDependentOn("Build")
+        ///     .Does(() =>
+        /// {
+        ///     var file = "Core.dll";
+        ///     StrongNameVerify(file, new StrongNameToolSettings {
+        ///             ForceVerification = true
+        ///     });
+        /// });
+        /// </code>
+        /// </example>
         [CakeMethodAlias]
         public static void StrongNameVerify(this ICakeContext context, string assembly, StrongNameToolSettings settings)
         {
@@ -31,11 +47,26 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
-        /// Strongs the name verify.
+        /// Verify assembly for strong name signature self consistency. 
         /// </summary>
-        /// <param name="context">Context.</param>
-        /// <param name="assembly">Assembly.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="assembly">The assembly to verify.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
+        /// <example>
+        /// <code>
+        /// Task("Verify")
+        ///     .IsDependentOn("Clean")
+        ///     .IsDependentOn("Restore")
+        ///     .IsDependentOn("Build")
+        ///     .Does(() =>
+        /// {
+        ///     var file = new FilePath("Core.dll");
+        ///     StrongNameVerify(file, new StrongNameToolSettings {
+        ///             ForceVerification = true
+        ///     });
+        /// });
+        /// </code>
+        /// </example>
         [CakeMethodAlias]
         public static void StrongNameVerify(this ICakeContext context, FilePath assembly, StrongNameToolSettings settings)
         {
@@ -48,11 +79,26 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
-        /// Strongs the name verify.
+        /// Verify assembly for strong name signature self consistency.
         /// </summary>
-        /// <param name="context">Context.</param>
-        /// <param name="assemblies">Assemblies.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="assemblies">The assemblies to verify.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
+        /// <example>
+        /// <code>
+        /// Task("Verify")
+        ///     .IsDependentOn("Clean")
+        ///     .IsDependentOn("Restore")
+        ///     .IsDependentOn("Build")
+        ///     .Does(() =>
+        /// {
+        ///     var file = new string[] { "Core.dll", "Common.dll" };
+        ///     StrongNameVerify(file, new StrongNameToolSettings {
+        ///             ForceVerification = true
+        ///     });
+        /// });
+        /// </code>
+        /// </example>
         [CakeMethodAlias]
         public static void StrongNameVerify(this ICakeContext context, IEnumerable<string> assemblies, StrongNameToolSettings settings)
         {
@@ -65,11 +111,26 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
-        /// Strongs the name verify.
+        /// Verify assembly for strong name signature self consistency. 
         /// </summary>
-        /// <param name="context">Context.</param>
-        /// <param name="assemblies">Assemblies.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="assemblies">The assemblies to verify.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
+        /// <example>
+        /// <code>
+        /// Task("Verify")
+        ///     .IsDependentOn("Clean")
+        ///     .IsDependentOn("Restore")
+        ///     .IsDependentOn("Build")
+        ///     .Does(() =>
+        /// {
+        ///     var files = GetFiles("*.dll");
+        ///     StrongNameVerify(file, new StrongNameToolSettings {
+        ///             ForceVerification = true
+        ///     });
+        /// });
+        /// </code>
+        /// </example>
         [CakeMethodAlias]
         public static void StrongNameVerify(this ICakeContext context, IEnumerable<FilePath> assemblies, StrongNameToolSettings settings)
         {

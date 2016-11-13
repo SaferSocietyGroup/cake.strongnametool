@@ -8,17 +8,21 @@ using Cake.Core.IO;
 namespace Cake.StrongNameTool
 {
     /// <summary>
-    /// Strong name resign tool aliases.
+    /// Strong Name (sn.exe) tool aliases. It is possible to resign a delay-signed assembly. 
+    /// The resign alias uses the sn.exe containers to resign the specified assemblies.
+    /// the aliases also provide verification functionallity. The verify alias will check if an assembly has a 
+    /// strong name or not. If one has turned off strong name verification, you can still verify by using the
+    /// <see cref="Cake.StrongNameTool.StrongNameToolSettings.ForceVerification"/>  set to true.
     /// </summary>
     [CakeAliasCategoryAttribute("Strong Naming")]
     public static class StrongNameReSignToolAliases
     {
         /// <summary>
-        /// Resigns the specified assembly.
+        /// Uses sn.exe to resign the specified assembly.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="assembly">The target assembly.</param>
-        /// <param name="settings">The settings.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
         /// <example>
         /// <code>
         /// Task("Resign")
@@ -45,11 +49,11 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
-        /// Resigns the specified assembly.
+        /// Uses sn.exe to resign the specified assembly.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="assembly">The target assembly.</param>
-        /// <param name="settings">The settings.</param>
+        /// <param name="assembly">The target assembly to resign.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
         /// <example>
         /// <code>
         /// Task("Resign")
@@ -77,11 +81,11 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
-        /// Resigns the specified assembly.
+        /// Uses sn.exe to resign the specified assemblies.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="assemblies">The target assembly.</param>
-        /// <param name="settings">The settings.</param>
+        /// <param name="assemblies">The assemblies to resign.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
         /// <example>
         /// <code>
         /// Task("Resign")
@@ -109,11 +113,26 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
-        /// Resigns the specified assembly.
+        /// Uses sn.exe to resign the specified assemblies.
         /// </summary>
-        /// <param name="context">Context.</param>
-        /// <param name="assemblies">Assemblies.</param>
-        /// <param name="settings">Settings.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="assemblies">The assemblies to resign.</param>
+        /// <param name="settings">The Strong Name tool settings to use.</param>
+        /// <example>
+        /// <code>
+        /// Task("Verify")
+        ///     .IsDependentOn("Clean")
+        ///     .IsDependentOn("Restore")
+        ///     .IsDependentOn("Build")
+        ///     .Does(() =>
+        /// {
+        ///     var files = GetFiles("*.dll");
+        ///     StrongNameReSign(file, new StrongNameToolSettings {
+        ///             Container = "YOUR_CONTAINER_NAME" 
+        ///     });
+        /// });
+        /// </code>
+        /// </example>
         [CakeMethodAlias]
         public static void StrongNameReSign(this ICakeContext context, IEnumerable<FilePath> assemblies, StrongNameToolSettings settings)
         {

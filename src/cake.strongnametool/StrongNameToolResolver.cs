@@ -19,9 +19,9 @@ namespace Cake.StrongNameTool
         /// <summary>
         /// Initializes a new instance of the <see cref="Cake.StrongNameTool.StrongNameResolver"/> class.
         /// </summary>
-        /// <param name="fileSystem">File system.</param>
-        /// <param name="environment">Environment.</param>
-        /// <param name="registry">Registry.</param>
+        /// <param name="fileSystem">The filesystem.</param>
+        /// <param name="environment">The environment.</param>
+        /// <param name="registry">The registry.</param>
         public StrongNameResolver(IFileSystem fileSystem, ICakeEnvironment environment, IRegistry registry)
         {
             _fileSystem = fileSystem;

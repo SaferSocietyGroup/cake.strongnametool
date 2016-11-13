@@ -118,10 +118,11 @@ Task("Copy-Files")
     .Does(() =>
 {
     CopyFileToDirectory(buildDir + File("cake.strongnametool.dll"), binDir);
+    CopyFileToDirectory(buildDir + File("cake.strongnametool.xml"), binDir);
+
     if(isRunningOnWindows)
     {
         CopyFileToDirectory(buildDir + File("cake.strongnametool.pdb"), binDir);
-        CopyFileToDirectory(buildDir + File("cake.strongnametool.xml"), binDir);
     }
 
     // Copy testing assemblies.
