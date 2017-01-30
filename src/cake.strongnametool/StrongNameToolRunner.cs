@@ -23,12 +23,12 @@ namespace Cake.StrongNameTool
         /// <param name="filesystem">The filesystem.</param>
         /// <param name="enviroment">The enviroment.</param>
         /// <param name="processrunner">The processrunner.</param>
-        /// <param name="globber">The globber.</param>
+        /// <param name="tools">The tool resolver.</param>
         /// <param name="registry">The registry.</param>
-        public StrongNameToolRunner(IFileSystem filesystem, ICakeEnvironment enviroment, IProcessRunner processrunner, IGlobber globber, IRegistry registry):this(filesystem, enviroment, processrunner, globber, registry, null)
+        public StrongNameToolRunner(IFileSystem filesystem, ICakeEnvironment enviroment, IProcessRunner processrunner, IToolLocator tools, IRegistry registry) :this(filesystem, enviroment, processrunner, tools, registry, null)
         {
         }
-        internal StrongNameToolRunner(IFileSystem fileSystem, ICakeEnvironment environment, IProcessRunner processRunner, IGlobber globber, IRegistry registry,IStrongNameToolResolver resolver):base(fileSystem, environment,processRunner, globber)
+        internal StrongNameToolRunner(IFileSystem fileSystem, ICakeEnvironment environment, IProcessRunner processRunner, IToolLocator tools, IRegistry registry, IStrongNameToolResolver resolver):base(fileSystem, environment,processRunner, tools)
         {
             _fileSystem = fileSystem;
             _environment = environment;

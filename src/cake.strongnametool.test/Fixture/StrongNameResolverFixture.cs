@@ -1,6 +1,7 @@
 using Cake.StrongNameTool;
 using Cake.Core;
 using Cake.Core.IO;
+using Cake.Testing;
 using NSubstitute;
 
 
@@ -11,7 +12,7 @@ namespace Cake.StrongNameTool.Test.Fixture
         private readonly bool _is64Bit;
 
         public IFileSystem FileSystem { get; set; }
-        public ICakeEnvironment Environment { get; set; }
+        public FakeEnvironment Environment { get; set; }
         public IRegistry Registry { get; set; }
 
 
@@ -20,17 +21,15 @@ namespace Cake.StrongNameTool.Test.Fixture
             _is64Bit = is64Bit;
 
             FileSystem = Substitute.For<IFileSystem>();
-            Environment = Substitute.For<ICakeEnvironment>();
+            Environment =new FakeEnvironment(PlatformFamily.Windows, _is64Bit);
+            Environment.SetSpecialPath(SpecialPath.ProgramFiles, "/ProgramFiles");
+            Environment.SetSpecialPath(SpecialPath.ProgramFilesX86, "/ProgramFilesX86");
             Registry = Substitute.For<IRegistry>();
-
-            Environment.Is64BitOperativeSystem().Returns(_is64Bit);
-            Environment.GetSpecialPath(SpecialPath.ProgramFiles).Returns("/ProgramFiles");
-            Environment.GetSpecialPath(SpecialPath.ProgramFilesX86).Returns("/ProgramFilesX86");
         }
 
         public void GivenThatTargetFrameworkIs40()
         {
-            Environment.GetTargetFramework().Returns(new System.Runtime.Versioning.FrameworkName(".NETFramework,Version=v4.0"));
+            Environment.SetTargetFramework(new System.Runtime.Versioning.FrameworkName(".NETFramework,Version=v4.0"));
         }
 
         public void GivenThatToolExistInKnownPath()

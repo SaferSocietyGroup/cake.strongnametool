@@ -75,7 +75,7 @@ namespace Cake.StrongNameTool
 
             // Get a list of the files we should check.
             var files = new List<FilePath>();
-            if (_environment.Is64BitOperativeSystem())
+            if (_environment.Platform.Is64Bit)
             {
                 // 64-bit specific paths.
                 //NETFX4
@@ -112,7 +112,7 @@ namespace Cake.StrongNameTool
                     if (sdkKey != null)
                     {
                         IRegistryKey fxKey;
-                        if (_environment.Is64BitOperativeSystem())
+                        if (_environment.Platform.Is64Bit)
                         {
                             fxKey = sdkKey.OpenKey("WinSDK-NetFx40Tools-x64");
                         }
