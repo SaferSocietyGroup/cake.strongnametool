@@ -147,7 +147,7 @@ namespace Cake.StrongNameTool
                 throw new ArgumentNullException("settings");
             }
 
-            var runner = new StrongNameToolRunner(context.FileSystem, context.Environment, context.ProcessRunner, context.Globber, context.Registry);
+            var runner = new StrongNameToolRunner(context.FileSystem, context.Environment, context.ProcessRunner, context.Tools, context.Registry);
             foreach (var assembly in assemblies)
             {
                 runner.Run("verify", assembly, settings);
