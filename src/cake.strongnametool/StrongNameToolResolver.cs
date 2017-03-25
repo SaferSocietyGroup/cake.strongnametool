@@ -72,20 +72,29 @@ namespace Cake.StrongNameTool
             // Get the path to program files.
             var programFilesPath = _environment.GetSpecialPath(SpecialPath.ProgramFilesX86);
 
+            var possibleVersions = new[] { "v10.0A", "v8.1A", "v8.1", "v8.0", "v7.0A" };
 
             // Get a list of the files we should check.
             var files = new List<FilePath>();
             if (_environment.Platform.Is64Bit)
             {
                 // 64-bit specific paths.
-                //NETFX4
-                files.Add(programFilesPath.Combine(@"Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\x64\").CombineWithFilePath("sn.exe"));
+                foreach (var version in possibleVersions)
+                {
+                    //NETFX4
+                    files.Add(programFilesPath.Combine(string.Format(@"Microsoft SDKs\Windows\{0}\Bin\NETFX 4.0 Tools\x64\", version)).CombineWithFilePath("sn.exe"));
+                    files.Add(programFilesPath.Combine(string.Format(@"Microsoft SDKs\Windows\{0}\Bin\x64\", version)).CombineWithFilePath("sn.exe"));
+                }
             }
             else
             {
                 // 32-bit specific paths.
-                //NETFX4
-                files.Add(programFilesPath.Combine(@"Microsoft SDKs\Windows\v7.0A\Bin\NETFX 4.0 Tools\").CombineWithFilePath("sn.exe"));
+                foreach (var version in possibleVersions)
+                {
+                    //NETFX4
+                    files.Add(programFilesPath.Combine(string.Format(@"Microsoft SDKs\Windows\{0}\Bin\NETFX 4.0 Tools\", version)).CombineWithFilePath("sn.exe"));
+                    files.Add(programFilesPath.Combine(string.Format(@"Microsoft SDKs\Windows\{0}\Bin\", version)).CombineWithFilePath("sn.exe"));
+                }
             }
 
             // Return the first path that exist.
@@ -121,10 +130,25 @@ namespace Cake.StrongNameTool
                             fxKey = sdkKey.OpenKey("WinSDK-NetFx40Tools");
                         }
 
-                        if(fxKey != null)
+                        if (fxKey != null)
                         {
                             var installationFolder = fxKey.GetValue("InstallationFolder") as string;
                             if (!string.IsNullOrWhiteSpace(installationFolder))
+                            {
+                                var installationPath = new DirectoryPath(installationFolder);
+                                var signToolPath = installationPath.CombineWithFilePath("sn.exe");
+
+                                if (_fileSystem.Exist(signToolPath))
+                                {
+                                    return signToolPath;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // if NETFX4 isn't present
+                            var installationFolder = sdkKey.GetValue("CurrentInstallFolder") as string;
+                            if (!string.IsNullOrEmpty(installationFolder))
                             {
                                 var installationPath = new DirectoryPath(installationFolder);
                                 var signToolPath = installationPath.CombineWithFilePath("sn.exe");
