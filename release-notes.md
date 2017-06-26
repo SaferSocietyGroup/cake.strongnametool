@@ -1,3 +1,7 @@
+### New in 0.0.3 (Released 2017/06/26)
+* Better tool resolver, able to resolve sn.exe from nonNETFX4 environments
+* New nuget package icon
+
 ### New in 0.0.2 (Released 2016/11/13)
 * Added docs to nuget package.
 * added a flag to force verify or not

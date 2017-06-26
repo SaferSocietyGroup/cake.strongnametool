@@ -2,13 +2,14 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>Cake.StrongNameTool</id>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
     <authors>Safer Society Group.</authors>
     <owners>Safer Society Group.</owners>
     <description>Cake addin to help with the resigning and verifying of .NET assemblies using sn.exe</description>
     <summary></summary>
     <licenseUrl>https://github.com/SaferSocietyGroup/cake.strongnametool/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/SaferSocietyGroup/cake.strongnametool</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright (c) Safer Society Group Sweden AB.</copyright>
     <tags></tags>

@@ -95,6 +95,7 @@ Task("Build")
             .SetConfiguration(configuration)
             .WithProperty("Windows", "True")
             .WithProperty("TreatWarningsAsErrors", "True")
+            .WithProperty("NoWarn", "1668")
             .UseToolVersion(MSBuildToolVersion.NET45)
             .SetVerbosity(Verbosity.Minimal)
             .SetNodeReuse(false));

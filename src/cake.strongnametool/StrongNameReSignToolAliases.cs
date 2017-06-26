@@ -10,8 +10,8 @@ namespace Cake.StrongNameTool
     /// <summary>
     /// Strong Name (sn.exe) tool aliases. It is possible to resign a delay-signed assembly. 
     /// The resign alias uses the sn.exe containers to resign the specified assemblies.
-    /// the aliases also provide verification functionallity. The verify alias will check if an assembly has a 
-    /// strong name or not. If one has turned off strong name verification, you can still verify by using the
+    /// the aliases also provide verification functionality. The verify alias will check if an assembly has a 
+    /// strong name or not.
     /// <see cref="Cake.StrongNameTool.StrongNameToolSettings.ForceVerification"/>  set to true.
     /// </summary>
     [CakeAliasCategoryAttribute("Strong Naming")]
