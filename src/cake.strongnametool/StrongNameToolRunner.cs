@@ -61,6 +61,24 @@ namespace Cake.StrongNameTool
         }
 
         /// <summary>
+        /// Run sn.exe specifically for the create command, passing in the name of the file to create.
+        /// </summary>
+        /// <param name="strongNameKeyFilePath">The path of the key that should be created.</param>
+        public void Run(FilePath strongNameKeyFilePath)
+        {
+            if(strongNameKeyFilePath.IsRelative)
+            {
+                strongNameKeyFilePath = strongNameKeyFilePath.MakeAbsolute(_environment);
+            }
+
+            var builder = new ProcessArgumentBuilder();
+            builder.Append("-k");
+            builder.AppendQuoted(strongNameKeyFilePath.FullPath);
+
+            Run(new StrongNameToolSettings(), builder);
+        }
+
+        /// <summary>
         /// Gets the arguments based on command and settings.
         /// </summary>
         /// <returns>The arguments.</returns>
@@ -83,7 +101,7 @@ namespace Cake.StrongNameTool
                 // verify
                 if (settings.ForceVerification) {
                     builder.Append ("-vf");
-                } 
+                }
                 else {
                     builder.Append ("-v");
                 }
