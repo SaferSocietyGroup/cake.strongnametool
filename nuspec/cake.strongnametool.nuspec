@@ -2,7 +2,7 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>Cake.StrongNameTool</id>
-    <version>0.0.3</version>
+    <version>0.0.5</version>
     <authors>Safer Society Group.</authors>
     <owners>Safer Society Group.</owners>
     <description>Cake addin to help with the resigning and verifying of .NET assemblies using sn.exe</description>

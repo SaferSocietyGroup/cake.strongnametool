@@ -1,3 +1,6 @@
+### New in 0.0.5 (Released 2019/10/21)
+* Added new alias for snk file
+
 ### New in 0.0.4 (Released 2018/02/26)
 * Updated .net framework version to 4.6.1
 * Updated cake to 0.25
